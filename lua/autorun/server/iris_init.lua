@@ -6,7 +6,7 @@ local function postJson( endpoint, data, callbackSuccess, callbackFailure )
         success = callbackSuccess,
         method = "POST",
         url = baseURL .. endpoint,
-        body = util.TableToJSON( data )	,
+        body = util.TableToJSON( data ),
         type = "application/json"
     }
 end
@@ -16,11 +16,11 @@ local function logError( err )
 end
 
 local function sendGroupsToIris()
-	local userData = {}
+    local userData = {}
 
-	for k, v in pairs( ULib.ucl.users ) do
-		userData[util.SteamIDTo64(k)] = v
-	end
+    for k, v in pairs( ULib.ucl.users ) do
+        userData[util.SteamIDTo64(k)] = v
+    end
 
     postJson( "/ranks/bulk_update", {
         users = userData,

@@ -1,4 +1,4 @@
-local baseURL = ""
+local baseURL = "http://iris.cfcservers.org/api"
 
 local function postJson( endpoint, data, callbackSuccess, callbackFailure )
     HTTP{
@@ -28,6 +28,7 @@ local function sendGroupsToIris()
     }, nil, logError )
 end
 
+hook.Add( "InitPostEntity", "CFC_IrisInterface_BulkRankUpdate", sendGroupsToIris )
 
 hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( steamid, allows, denies, newGroup, oldGroup )
     local steamid64 = util.SteamIDTo64( steamid )

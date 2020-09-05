@@ -1,4 +1,6 @@
 local baseURL = "http://iris.cfcservers.org/api"
+local authToken = file.Read( "cfc/iris/auth_token.txt" )
+authToken = string.Replace(authToken, "\n", "")
 
 local function postJson( endpoint, data, callbackSuccess, callbackFailure )
     HTTP{
@@ -6,6 +8,9 @@ local function postJson( endpoint, data, callbackSuccess, callbackFailure )
         success = callbackSuccess,
         method = "POST",
         url = baseURL .. endpoint,
+        headers = {
+            "Authentication": "Bearer "..authToken
+        }
         body = util.TableToJSON( data ),
         type = "application/json"
     }

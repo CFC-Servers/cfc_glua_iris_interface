@@ -13,8 +13,8 @@ authToken = removeNewlines( authToken )
 
 local function postJson( endpoint, data, callbackSuccess, callbackFailure )
     HTTP{
-        failed = callbackFailure,
-        success = callbackSuccess,
+        failed = callbackFailure or function( ... ) logger:info( ... ) end,
+        success = callbackSuccess or function( ... ) logger:error( ... ) end,
         method = "POST",
         url = baseURL .. endpoint,
         headers = {

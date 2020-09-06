@@ -1,6 +1,7 @@
 local baseURL = "https://iris.cfcservers.org/api/"
 local authToken = file.Read( "cfc/iris/auth_token.txt" )
-authToken = string.Replace(authToken, "\n", "")
+authToken = string.Replace( authToken, "\n", "" )
+authToken = string.Replace( authToken, "\r", "" )
 
 local function postJson( endpoint, data, callbackSuccess, callbackFailure )
     HTTP{

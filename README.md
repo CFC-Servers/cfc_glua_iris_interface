@@ -1,4 +1,4 @@
-# cfc_glua_iris_interface
+# CFC GLua Iris Interface
 
 ## Requirements
  - **[CFC Logger](https://github.com/CFC-Servers/cfc_logger)**

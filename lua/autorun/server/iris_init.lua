@@ -1,3 +1,6 @@
+require "cfclogger"
+
+local logger = CFCLogger( "IrisInterface" )
 local baseURL = "https://iris.cfcservers.org/api/"
 local authToken = file.Read( "cfc/iris/auth_token.txt" )
 local realm = file.Read( "cfc/realm.txt" )

@@ -10,7 +10,7 @@ local function postJson( endpoint, data, callbackSuccess, callbackFailure )
         method = "POST",
         url = baseURL .. endpoint,
         headers = {
-            "Authentication": "Bearer "..authToken
+            "Authorization": "Bearer " .. authToken
         }
         body = util.TableToJSON( data ),
         type = "application/json"

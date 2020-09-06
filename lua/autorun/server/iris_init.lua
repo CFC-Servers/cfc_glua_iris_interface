@@ -1,4 +1,4 @@
-local baseURL = "http://iris.cfcservers.org/api"
+local baseURL = "https://iris.cfcservers.org/api/"
 local authToken = file.Read( "cfc/iris/auth_token.txt" )
 authToken = string.Replace(authToken, "\n", "")
 

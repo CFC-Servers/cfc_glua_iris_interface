@@ -25,7 +25,7 @@ local function sendGroupsToIris()
     local userData = {}
 
     for k, v in pairs( ULib.ucl.users ) do
-        userData[util.SteamIDTo64(k)] = v
+        userData[util.SteamIDTo64( k )] = v
     end
 
     postJson( "ranks/bulk_update", {

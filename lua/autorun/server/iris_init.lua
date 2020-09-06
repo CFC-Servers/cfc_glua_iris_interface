@@ -28,7 +28,7 @@ local function sendGroupsToIris()
         userData[util.SteamIDTo64(k)] = v
     end
 
-    postJson( "/ranks/bulk_update", {
+    postJson( "ranks/bulk_update", {
         users = userData,
         realm = "cfc3",
     }, nil, logError )

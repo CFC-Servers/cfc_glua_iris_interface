@@ -1,7 +1,15 @@
 local baseURL = "https://iris.cfcservers.org/api/"
 local authToken = file.Read( "cfc/iris/auth_token.txt" )
-authToken = string.Replace( authToken, "\n", "" )
-authToken = string.Replace( authToken, "\r", "" )
+local realm = file.Read( "cfc/realm.txt" )
+
+local function removeNewlines( s )
+    s = string.Replace( s, "\n", "" )
+    s = string.Replace( s, "\r", "" )
+    return s
+end
+
+realm = removeNewlines( realm )
+authToken = removeNewlines( authToken )
 
 local function postJson( endpoint, data, callbackSuccess, callbackFailure )
     HTTP{
@@ -30,7 +38,7 @@ local function sendGroupsToIris()
 
     postJson( "ranks/bulk_update", {
         users = userData,
-        realm = "cfc3",
+        realm = realm,
     }, nil, logError )
 end
 
@@ -44,6 +52,6 @@ hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( stea
                 group = newGroup
             }
         },
-        realm = "cfc3"
+        realm = realm
     } )
 end )

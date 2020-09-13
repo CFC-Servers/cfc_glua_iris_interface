@@ -21,8 +21,8 @@ local function postJson( endpoint, data, callbackSuccess, callbackFailure )
         method = "POST",
         url = baseURL .. endpoint,
         headers = {
-            "Authorization": "Bearer " .. authToken
-        }
+            Authorization = "Bearer " .. authToken
+        },
         body = util.TableToJSON( data ),
         type = "application/json"
     }
@@ -36,12 +36,13 @@ local function sendGroupsToIris()
     local userData = {}
 
     for k, v in pairs( ULib.ucl.users ) do
-        userData[util.SteamIDTo64( k )] = v
+        userData[util.SteamIDTo64( k )] = v.group
     end
 
     postJson( "ranks/bulk_update", {
         users = userData,
         realm = realm,
+        platform = "steam"
     }, nil, logError )
 end
 

@@ -50,7 +50,7 @@ hook.Add( "InitPostEntity", "CFC_IrisInterface_BulkRankUpdate", sendGroupsToIris
 
 hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( steamid, allows, denies, newGroup, oldGroup )
     local steamid64 = util.SteamIDTo64( steamid )
-    postJson( "/ranks/bulk_update", {
+    postJson( "ranks/bulk_update", {
         users = {
             [steamid64] = {
                 group = newGroup

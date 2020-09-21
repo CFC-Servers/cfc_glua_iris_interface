@@ -52,10 +52,9 @@ hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( stea
     local steamid64 = util.SteamIDTo64( steamid )
     postJson( "ranks/bulk_update", {
         users = {
-            [steamid64] = {
-                group = newGroup
-            }
+            [steamid64] = newGroup
         },
-        realm = realm
+        realm = realm,
+        platform = "steam"
     } )
 end )

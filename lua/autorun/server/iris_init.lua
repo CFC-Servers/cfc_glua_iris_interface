@@ -46,7 +46,10 @@ local function sendGroupsToIris()
     }, nil, logError )
 end
 
-hook.Add( "InitPostEntity", "CFC_IrisInterface_BulkRankUpdate", sendGroupsToIris )
+hook.Add( "Think", "CFC_IrisInterface_BulkRankUpdate", function()
+    hook.Remove( "Think", "CFC_ClAddonLoader_LoadAddons" )
+    sendGroupsToIris()
+end )
 
 hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( steamid, allows, denies, newGroup, oldGroup )
     local steamid64 = util.SteamIDTo64( steamid )

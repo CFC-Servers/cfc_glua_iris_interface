@@ -47,7 +47,7 @@ local function sendGroupsToIris()
 end
 
 hook.Add( "Think", "CFC_IrisInterface_BulkRankUpdate", function()
-    hook.Remove( "Think", "CFC_ClAddonLoader_LoadAddons" )
+    hook.Remove( "Think", "CFC_IrisInterface_BulkRankUpdate" )
     sendGroupsToIris()
 end )
 

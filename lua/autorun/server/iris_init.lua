@@ -61,3 +61,17 @@ hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( stea
         platform = "steam"
     } )
 end )
+
+hook.Add( "PlayerAuthed", "CFC_IrisInterface_SetIrisID", function( ply )
+    postJson(
+        "users/find",
+        { identities = { { platform = "steam", identifier = ply:SteamID64() } } },
+        function( _, data )
+            data = util.JSONToTable( data )
+            local irisId = data.users[1].id
+
+            ply.cfc_iris_id = irisId
+        end,
+        logError
+    )
+end )

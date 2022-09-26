@@ -29,7 +29,7 @@ local function postJson( endpoint, data, callbackSuccess, callbackFailure )
 end
 
 local function logError( err )
-    print( "CFC Iris Interface HTTP error: " .. err)
+    print( "CFC Iris Interface HTTP error: " .. err )
 end
 
 local function sendGroupsToIris()
@@ -51,7 +51,7 @@ hook.Add( "Think", "CFC_IrisInterface_BulkRankUpdate", function()
     sendGroupsToIris()
 end )
 
-hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( steamid, allows, denies, newGroup, oldGroup )
+hook.Add( "ULibUserGroupChange", "CFC_IrisInterface_UpdateRanks", function( steamid, _, _, newGroup, _ )
     local steamid64 = util.SteamIDTo64( steamid )
     postJson( "ranks/bulk_update", {
         users = {
